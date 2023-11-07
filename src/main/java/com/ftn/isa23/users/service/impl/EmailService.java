@@ -46,7 +46,7 @@ public class EmailService implements IEmailService {
         EmailDTO dto = generateEmailInfo(customer);
         String filePath = "./verificationEmailTemplate.html";
         File starting = new File(System.getProperty("user.dir"));
-        File file = new File(starting, "src/main/java/com/ftn/isa22/users/service/impl/verificationEmailTemplate.html");
+        File file = new File(starting, "src/main/java/com/ftn/isa23/users/service/impl/verificationEmailTemplate.html");
 
         Document doc = Jsoup.parse(file, "utf-8");
 

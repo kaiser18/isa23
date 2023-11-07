@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.heading-col{
+    padding: 1px;
+}
+
+.heading{
+    margin-bottom: 0px;
+    color:  #3F51B5;
+    font-weight: bold;
+}
+
+.col {
+    float: left;
+    width: 50%;
+    padding-top: 2vw;
+}
+.mat-divider {
+    border-top-color: #3F51B5;
+}
