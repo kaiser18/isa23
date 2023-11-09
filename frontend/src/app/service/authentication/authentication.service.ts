@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { AuthenticatedUser } from 'src/app/model/users/authenticatedUser';
+import { AuthenticatedUser } from 'src/app/model/users/authenticateduser';
 import { Authentication } from 'src/app/model/users/authentication';
 import { environment } from 'src/environments/environment';
 
