@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-card>
+        <form [formGroup]="createForm" (ngSubmit)="login()">
+            <div id="createForm">
+                <div class="inputField">
+                    <mat-form-field appearance="fill" id="username-ff">
+                        <mat-label>Email</mat-label>
+                        <input matInput id="username" placeholder="Email" name="username-ff"
+                            formControlName="username">
+                        <mat-error
+                            *ngIf="!createForm.get('username').valid && createForm.get('username').touched && createForm.get('username').errors['required']">
+                            Please enter email</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inputField">
+                    <mat-form-field appearance="fill" id="password-ff">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" id="password" placeholder="Password" name="password-ff"
+                            formControlName="password">
+                        <mat-error
+                            *ngIf="!createForm.get('password').valid && createForm.get('password').touched && createForm.get('password').errors['required']">
+                            Please enter password</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div style="float: left;">
+                    <label>Not registered yet?</label>
+                    <a routerLink="/registration">Register now</a>
+                </div>
+                <button mat-flat-button name="button-ff" style="float: right;" color="primary" type="submit"
+                    [disabled]="!createForm.valid">Login</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

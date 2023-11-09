@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Address } from '../model/address/address';
 import { Country } from '../model/address/country';
 import { City } from '../model/address/city';
@@ -13,7 +13,7 @@ import { RegistrationService } from '../service/registration/registration.servic
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
   createForm: FormGroup;
 
   formData: FormData;

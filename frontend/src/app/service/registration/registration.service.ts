@@ -12,4 +12,8 @@ export class RegistrationService {
   registerCustomer(data: Customer) {
     return this.http.post(`${environment.baseUrl}/${environment.customer}/${environment.registration}`, data, {responseType: 'text'});
   }
+
+  activateCustomer(token: String) {
+    return this.http.post(`${environment.baseUrl}/${environment.customer}/${environment.activation}`, token, {responseType: 'text'});
+  }
 }
