@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.Message;
@@ -21,7 +22,7 @@ import java.io.IOException;
 
 
 @Service
-public class EmailService implements IEmailService {
+public class EmailService { //implements IEmailService {
     private final JavaMailSender javaMailSender;
 
     @Autowired
@@ -29,7 +30,7 @@ public class EmailService implements IEmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    @Override
+   // @Override
     public EmailDTO generateEmailInfo(Customer customer) {
         String url = "http://localhost:4200/login?token=" + customer.getVerificationCode();
         String email = customer.getEmail();
@@ -41,7 +42,8 @@ public class EmailService implements IEmailService {
         return dto;
     }
 
-    @Override
+   // @Override
+    @Async
     public void sendConfirmationEmail(Customer customer) throws FileNotFoundException, MessagingException, IOException {
         EmailDTO dto = generateEmailInfo(customer);
         String filePath = "./verificationEmailTemplate.html";

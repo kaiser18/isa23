@@ -93,6 +93,8 @@ public class WebSecurityConfig {
                 // .antMatchers("/admin").hasRole("ADMIN") ili .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
 
                 .antMatchers("/customer/add").permitAll()
+                .antMatchers("/customer/activation").permitAll()
+                .antMatchers("/customer/getLoggedCustomer").permitAll()
 
                 // za svaki drugi zahtev korisnik mora biti autentifikovan
                 .anyRequest().authenticated().and()
