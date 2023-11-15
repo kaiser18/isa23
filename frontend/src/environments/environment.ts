@@ -6,4 +6,6 @@ export const environment = {
     authenticate: 'auth',
     login: 'login',
     activation: 'activation',
+    company: 'company',
+    findAll: 'findAll',
 }

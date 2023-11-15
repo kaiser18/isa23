@@ -15,12 +15,19 @@ import { LoginComponent } from './login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { UnauthenticatdUserCompaniesComponent } from './unauthenticatd-user-companies/unauthenticatd-user-companies.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    UnauthenticatdUserCompaniesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +41,12 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     MatButtonModule,
     HttpClientModule,
     MatCardModule,
+    MatSortModule,
+    MatIconModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
