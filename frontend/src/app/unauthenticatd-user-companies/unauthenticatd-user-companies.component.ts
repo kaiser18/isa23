@@ -21,6 +21,7 @@ export class UnauthenticatdUserCompaniesComponent implements AfterViewInit {
   }
 
   public companies: Company[] = new Array();
+  public companiesCopy: Company[] = new Array();
 
   ngOnInit(): void {
     this.getAllCompanies();
@@ -36,11 +37,33 @@ export class UnauthenticatdUserCompaniesComponent implements AfterViewInit {
   }
 
   getGradeValues(event) {
-    //TODO grade filtering
+    if (event.value == 1){
+      this.companies = this.companiesCopy;
+      this.companies = this.companies.filter(c => c.averageGrade >= 0 &&
+         c.averageGrade <=1);
+    }else if(event.value == 2){
+      this.companies = this.companiesCopy;
+      this.companies = this.companies.filter(c => c.averageGrade >= 1 &&
+         c.averageGrade <=2);
+    }else if(event.value == 3){
+      this.companies = this.companiesCopy;
+      this.companies = this.companies.filter(c => c.averageGrade >= 2 &&
+         c.averageGrade <=3);
+    }
+    else if(event.value == 4){
+      this.companies = this.companiesCopy;
+      this.companies = this.companies.filter(c => c.averageGrade >= 3 &&
+         c.averageGrade <=4);
+    } else if(event.value == 5){
+      this.companies = this.companiesCopy;
+      this.companies = this.companies.filter(c => c.averageGrade >= 4 &&
+         c.averageGrade <=5);
+    }else {
+      this.companies = this.companiesCopy;
+    }
   }
 
   routeToCompany(c) {
-    //TODO make company profile page
     var string = c.id.toString();
     this.router.navigateByUrl('/company', {state: { id: string} });
   }
@@ -48,6 +71,7 @@ export class UnauthenticatdUserCompaniesComponent implements AfterViewInit {
   getAllCompanies() {
     this.companyService.findAll().subscribe(data => {
       this.companies = data;
+      this.companiesCopy = data;
     });
   }
 

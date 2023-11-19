@@ -1,0 +1,66 @@
+<body>
+    <mat-drawer-container class="example-container"  autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 0px; background: transparent;" hasBackdrop="true">
+        <mat-drawer style="width: 20%; height: 100%; background-color: #385399;"  #drawer mode ="over">
+            <mat-action-list>
+                
+            </mat-action-list>
+            <mat-action-list style="position: relative; bottom: 1px;">
+
+            </mat-action-list>
+        </mat-drawer>
+            <mat-drawer-content>
+                <mat-toolbar color="primary">
+                  <mat-toolbar-row>
+                    <button mat-icon-button class="example-icon" (click)="drawer.toggle()" >
+                       <mat-icon>menu</mat-icon>
+                    </button>
+                   <h1>MedEquip</h1>
+                   <span class="menu-spacer"></span>
+                   <div class="divTool">
+               
+                   </div>
+                   <span class="example-spacer"></span>
+                   <button *ngIf="!checkLoggedInUser()" mat-icon-button [routerLink]="'/login'" class="example-icon" aria-label="Example icon-button with share icon"  class="tooltipR">
+                       <mat-icon>login<span class="tooltiptext">Login</span>
+                       </mat-icon>
+                       </button>
+                   <button *ngIf="!checkLoggedInUser()" mat-icon-button [routerLink]="'/registration'" class="example-icon" aria-label="Example icon-button with share icon"  class="tooltipR">
+                   <mat-icon>app_registration <span class="tooltiptext">Registration</span>
+                   </mat-icon>
+                   </button>
+                   <button *ngIf="checkLoggedInUser()" mat-icon-button (click)="logout()" class="example-icon" aria-label="Example icon-button with share icon"  class="tooltipR">
+                       <mat-icon>logout <span class="tooltiptext">Logout</span>
+                       </mat-icon>
+                       </button>
+               </mat-toolbar-row>
+                </mat-toolbar>
+                <mat-card>
+                <div *ngIf="company">
+                <div *ngIf="profile" style="margin-left: 100px;margin-top:20px;margin-bottom: 30px;">
+                    <div style="display: flex;margin-left:30px;">
+                      
+                    </div>
+                    <div style="display:grid;margin-left:200px;margin-top:20px;">
+                      <div><label>Name:</label></div>
+                      <div><p>{{company.name}}</p></div>
+                      <div><label>Address:</label></div>
+                      <div style="height: fit-content;display:flex;"><p>{{company.address.street}} {{company.address.number}}, {{company.address.city.name}}, {{company.address.country.name}}</p></div>
+                      <div><label>About:</label></div>
+                      <div style="width: 500px;height: fit-content;"><p>{{company.description}}</p></div>
+                      <div><label>Grade:</label></div>
+                      <div><p>{{company.averageGrade}}</p></div>
+                      <div><label>Equipment:</label></div>
+                        <div *ngIf="equipment.length==0"><p style="font-size: 15px;">No equipment in the company at the moment.</p></div>
+                        <div *ngIf="equipment.length!=0">
+                        <p class="text-grid"  *ngFor="let e of equipment">
+                            {{e}}
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </mat-card>
+ 
+            </mat-drawer-content>
+    </mat-drawer-container>
+</body>

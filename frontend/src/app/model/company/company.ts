@@ -5,9 +5,9 @@ export class Company {
     public name: String;
     public address: Address;
     public description: String;
-    public averageGrade: Number;
+    public averageGrade: number;
 
-    constructor(id: Number, name: String, address: Address, description: String, averageGrade: Number) {
+    constructor(id: Number, name: String, address: Address, description: String, averageGrade: number) {
         this.id = id;
         this.name = name;
         this.address = address;

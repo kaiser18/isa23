@@ -22,4 +22,8 @@ export class CompanyService {
   findByAddress(address : String) : Observable<Company[]>{
     return this.http.get<Company[]>(`${environment.baseUrl}/${environment.company}/getByAddress?address=${address}`);
   }
+
+  getCompanyById(id: Number): Observable<Company> {
+    return this.http.get<Company>(`${environment.baseUrl}/${environment.company}/${environment.getById}?id=${id}`);
+  }
 }

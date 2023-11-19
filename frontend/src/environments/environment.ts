@@ -8,4 +8,5 @@ export const environment = {
     activation: 'activation',
     company: 'company',
     findAll: 'findAll',
+    getById: 'getById',
 }

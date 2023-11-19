@@ -21,13 +21,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { CompanyComponent } from './company/company.component';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    UnauthenticatdUserCompaniesComponent
+    UnauthenticatdUserCompaniesComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSelectModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatListModule
     
   ],
   providers: [
