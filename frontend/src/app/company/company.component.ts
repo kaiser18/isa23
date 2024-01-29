@@ -3,6 +3,7 @@ import { Company } from '../model/company/company';
 import { CompanyService } from '../service/company/company.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication/authentication.service';
+import { StorageService } from '../service/company/storage.service';
 
 @Component({
   selector: 'app-company',
@@ -11,10 +12,10 @@ import { AuthenticationService } from '../service/authentication/authentication.
 })
 export class CompanyComponent implements OnInit {
   public company: Company;
-  public equipment: String[] = new Array();
+  public equipment: Storage[] = new Array();
   public profile: boolean = true;
 
-  constructor(private service: CompanyService, private router: Router, private authService: AuthenticationService) {
+  constructor(private service: CompanyService, private router: Router, private authService: AuthenticationService, private storageService: StorageService) {
 
   }
 
@@ -24,6 +25,7 @@ export class CompanyComponent implements OnInit {
     console.log(history.state.id);
 
     this.loadCompany();
+    this.loadStorage();
   }
 
   loadCompany() {
@@ -31,6 +33,14 @@ export class CompanyComponent implements OnInit {
       data => {
         this.company = data;
       }
+    )
+  }
+
+  loadStorage() {
+    this.storageService.getAvailableByCompany(Number(localStorage.getItem('companyId'))).subscribe(
+      res => {
+        this.equipment = res;
+        }
     )
   }
 

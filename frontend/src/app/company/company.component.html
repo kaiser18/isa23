@@ -53,7 +53,7 @@
                         <div *ngIf="equipment.length==0"><p style="font-size: 15px;">No equipment in the company at the moment.</p></div>
                         <div *ngIf="equipment.length!=0">
                         <p class="text-grid"  *ngFor="let e of equipment">
-                            {{e}}
+                            {{e.equipmentName}}
                         </p>
                         </div>
                     </div>

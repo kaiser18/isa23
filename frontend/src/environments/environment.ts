@@ -9,4 +9,6 @@ export const environment = {
     company: 'company',
     findAll: 'findAll',
     getById: 'getById',
+    storage: 'storage',
+    getAvailableByCompany: 'getAvailableEquipmentByCompany'
 }

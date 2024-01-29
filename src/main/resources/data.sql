@@ -29,3 +29,25 @@ insert into user_authority(user_id, authority_id) values (100, 3);
 insert into user_authority(user_id, authority_id) values (200, 2);
 insert into user_authority(user_id, authority_id) values (300, 2);
 insert into user_authority(user_id, authority_id) values (400, 2);
+
+insert into equipment(id, name) values (100, 'Mask');
+insert into equipment(id, name) values (200, 'Gown');
+insert into equipment(id, name) values (300, 'Syringe');
+insert into equipment(id, name) values (400, 'Gloves');
+insert into equipment(id, name) values (500, 'Catheter');
+
+insert into storage(id, quantity, company_id, equipment_id) values (100, 200 , 100, 100);
+insert into storage(id, quantity, company_id, equipment_id) values (200, 150 , 100, 200);
+insert into storage(id, quantity, company_id, equipment_id) values (300, 220 , 100, 300);
+insert into storage(id, quantity, company_id, equipment_id) values (400, 0 , 100, 400);
+
+insert into storage(id, quantity, company_id, equipment_id) values (500, 50 , 200, 100);
+insert into storage(id, quantity, company_id, equipment_id) values (600, 0 , 200, 200);
+insert into storage(id, quantity, company_id, equipment_id) values (700, 250 , 200, 300);
+insert into storage(id, quantity, company_id, equipment_id) values (800, 300 , 200, 400);
+insert into storage(id, quantity, company_id, equipment_id) values (900, 100 , 200, 500);
+
+insert into storage(id, quantity, company_id, equipment_id) values (1000, 300 , 300, 200);
+insert into storage(id, quantity, company_id, equipment_id) values (1100, 25 , 300, 300);
+insert into storage(id, quantity, company_id, equipment_id) values (1200, 0 , 300, 400);
+insert into storage(id, quantity, company_id, equipment_id) values (1300, 0 , 300, 500);

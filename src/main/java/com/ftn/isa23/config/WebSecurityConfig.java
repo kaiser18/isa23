@@ -101,6 +101,9 @@ public class WebSecurityConfig {
                 .antMatchers("/company/getByName").permitAll()
                 .antMatchers("/company/getByAddress").permitAll()
 
+                .antMatchers("/storage/getEquipmentByCompany").permitAll()
+                .antMatchers("/storage/getAvailableEquipmentByCompany").permitAll()
+
                 // za svaki drugi zahtev korisnik mora biti autentifikovan
                 .anyRequest().authenticated().and()
                 // za development svrhe ukljuci konfiguraciju za CORS iz WebConfig klase
