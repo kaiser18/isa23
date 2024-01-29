@@ -102,7 +102,9 @@ public class WebSecurityConfig {
                 .antMatchers("/company/getByAddress").permitAll()
 
                 .antMatchers("/storage/getEquipmentByCompany").permitAll()
-                .antMatchers("/storage/getAvailableEquipmentByCompany").permitAll()
+                .antMatchers("/storage/getAvailableByCompany").permitAll()
+
+                .antMatchers("/appointment/getAvailableByCompany").permitAll()
 
                 // za svaki drugi zahtev korisnik mora biti autentifikovan
                 .anyRequest().authenticated().and()

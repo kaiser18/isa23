@@ -51,14 +51,52 @@
                       <div><p>{{company.averageGrade}}</p></div>
                       <div><label>Equipment:</label></div>
                         <div *ngIf="equipment.length==0"><p style="font-size: 15px;">No equipment in the company at the moment.</p></div>
-                        <div *ngIf="equipment.length!=0">
-                        <p class="text-grid"  *ngFor="let e of equipment">
-                            {{e.equipmentName}}
-                        </p>
+                        <table class="fl-table" *ngIf="equipment.length!=0">
+                              <tbody>
+                              <tr *ngFor="let e of equipment">
+                                  <td>{{e.equipmentName}}</td>
+                                  <td *ngIf="isCustomer()"><input id="quantityToOrder" type="number"/></td>
+                                  <td *ngIf="isCustomer()"><button mat-button style="background-color: #385399; color: white;"
+                                   (click)="addToOrder(e, quantityToOrder)" >Add to order</button></td>
+                              </tr>
+                    
+                              <tbody>
+                        </table>
+
+                        <div style="align-content: center;">
+                          <label style="align-content:center;">Available appointments:</label>
+                        </div>
+                        <div *ngIf="availableAppointments.length==0">
+                          <p style="margin-left: 200px;margin-top:30px;">No available appointments at the moment.</p>
+                        </div>
+                        <table class="fl-table" *ngIf="availableAppointments.length!=0">
+                            <tbody>
+                            <tr *ngFor="let availableAppointment of availableAppointments">
+                                <td>{{availableAppointment.timePeriod.startTime | date:"dd.MM.yyyy. HH:mm"}}</td>
+                                <td>{{availableAppointment.timePeriod.endTime | date:"dd.MM.yyyy. HH:mm"}}</td>
+                                <td>{{availableAppointment.companyAdmin.name}} {{availableAppointment.companyAdmin.surname}}</td>
+                                <td *ngIf="isCustomer()"><button mat-button style="background-color: #385399; color: white;"
+                                  (click)="chooseAppointment(availableAppointment)">Select</button></td>
+                            </tr>
+                  
+                            <tbody>
+                        </table>
+                        
+                        <div style="display: flex;margin-left:30px;">
+                            <button *ngIf="isCustomer()" style="float:right; background-color: #385399;margin:10px;"  color="accent" mat-raised-button (click)='showMakeReservation()'>Make reservation</button>
+                        </div>
+            
                         </div>
                     </div>
                 </div>
-                </div>
+                <mat-card *ngIf="makeReservation" style="height:fit-content;">
+                    <div style="margin-left:200px;">
+                      <label style="align-content:center;">Reservation</label>
+                    </div>
+                    <div style="vertical-align: bottom;">
+                      <button style="float:right;position: relative; background-color: #385399; margin-right:20px;margin-top: 60px;" color="accent" mat-raised-button id='cancelReservation' (click)='cancelReservation()'>Back</button>
+                    </div>
+                  </mat-card>
               </mat-card>
  
             </mat-drawer-content>

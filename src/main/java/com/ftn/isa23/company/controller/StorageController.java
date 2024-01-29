@@ -27,7 +27,7 @@ public class StorageController {
         return StorageMapper.mapStoragesToListDTOs(service.getEquipmentByCompany(companyId));
     }
 
-    @GetMapping(value = "/getAvailableEquipmentByCompany", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAvailableByCompany", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     List<StorageDTO> getAvailableEquipmentByCompany(@RequestParam("c") Long companyId) {
         return StorageMapper.mapStoragesToListDTOs(service.getAvailableEquipmentByCompany(companyId));
