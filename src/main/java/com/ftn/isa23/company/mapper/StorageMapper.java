@@ -13,11 +13,11 @@ public class StorageMapper {
         return new StorageDTO(storage.getEquipment().getId(), storage.getEquipment().getName(), storage.getQuantity(), storage.getCompany().getId());
     }
 
-    public static List<StorageDTO> mapStoragesToListDTOs(List<Storage> companies) {
+    public static List<StorageDTO> mapStoragesToListDTOs(List<Storage> storages) {
         List<StorageDTO> dtos = new ArrayList<StorageDTO>();
 
-        for (Storage c : companies) {
-            dtos.add(mapStorageToDTO(c));
+        for (Storage s : storages) {
+            dtos.add(mapStorageToDTO(s));
         }
 
         return  dtos;

@@ -4,6 +4,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { UnauthenticatdUserCompaniesComponent } from './unauthenticatd-user-companies/unauthenticatd-user-companies.component';
 import { CompanyComponent } from './company/company.component';
+import { CustomerReservationsComponent } from './customer-reservations/customer-reservations.component';
+import { AuthGuard } from './helpers/auth.guard';
+import { Role } from './model/users/role';
 
 const routes: Routes = [
   {
@@ -21,6 +24,12 @@ const routes: Routes = [
   {
     path: 'company',
     component: CompanyComponent
+  },
+  {
+    path: 'customer/reservations',
+    component: CustomerReservationsComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.Customer]}
   },
 ];
 

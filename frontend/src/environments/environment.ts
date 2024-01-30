@@ -12,4 +12,8 @@ export const environment = {
     storage: 'storage',
     getAvailableByCompany: 'getAvailableByCompany',
     appointment: 'appointment',
+    reservation: 'reservation',
+    reservationStorage: 'reservationStorage',
+    getEquipmentByReservation: 'getEquipmentByReservation',
+    getCreatedForCustomer: 'getCreatedForCustomer',
 }

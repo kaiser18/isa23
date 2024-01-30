@@ -66,3 +66,12 @@ insert into appointment(id, status, appointment_end_time, appointment_start_time
 insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1000, 0, '2024-02-03 10:00:00', '2024-02-03 09:30:00', 300, 400);
 insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1100, 0, '2024-02-03 10:30:00', '2024-02-03 10:00:00', 300, 400);
 insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1200, 0, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 300, 400);
+
+insert into reservation(id, status, appointment_id, company_id, customer_id) values (100, 0, 400, 100, 100);
+insert into reservation(id, status, appointment_id, company_id, customer_id) values (200, 0, 600, 200, 100);
+insert into reservation(id, status, appointment_id, company_id, customer_id) values (300, 1, 900, 300, 100);
+
+insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (100, 10, 100, 100);
+insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (200, 15, 100, 100);
+insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (300, 10, 100, 200);
+insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (400, 20, 100, 300);

@@ -24,13 +24,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { CompanyComponent } from './company/company.component';
 import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
+import { CustomerReservationsComponent } from './customer-reservations/customer-reservations.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
     UnauthenticatdUserCompaniesComponent,
-    CompanyComponent
+    CompanyComponent,
+    CustomerReservationsComponent
   ],
   imports: [
     BrowserModule,
