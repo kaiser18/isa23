@@ -5,7 +5,8 @@
                 
             </mat-action-list>
             <mat-action-list style="position: relative; bottom: 1px;">
-
+                <button mat-list-item routerLink="/" style="color: white;">Companies</button>
+                <button *ngIf="isCustomer()"mat-list-item routerLink="/customer/reservations" style="color: white;">Reservations</button>
             </mat-action-list>
         </mat-drawer>
             <mat-drawer-content>
@@ -34,6 +35,11 @@
                        </button>
                </mat-toolbar-row>
                 </mat-toolbar>
+                    <div>
+                        <p style="align-content: center;">
+                            Penalties: {{penalties}}
+                        </p>
+                    </div>
                     <div class="table-wrapper">
                         <table matSort (matSortChange)="sortData($event)" class="fl-table">
                             <thead>

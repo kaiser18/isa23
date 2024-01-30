@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IReservationService {
     List<Reservation> findCreatedForCustomer(Long customerId);
+    boolean cancel(Long reservationId);
 }

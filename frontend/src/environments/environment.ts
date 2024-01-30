@@ -16,4 +16,6 @@ export const environment = {
     reservationStorage: 'reservationStorage',
     getEquipmentByReservation: 'getEquipmentByReservation',
     getCreatedForCustomer: 'getCreatedForCustomer',
+    cancel: 'cancel',
+    
 }

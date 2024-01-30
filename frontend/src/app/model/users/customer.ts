@@ -12,8 +12,9 @@ export class Customer {
     public professionInfo: string;
     public role: Role;
     public authorities: Number[];
+    public penalties: Number;
     
-    constructor(name: string, surname: string, address: Address, phoneNumber: string, email: string, password: string, profession: string, professionInfo: string, role: Role, authorities: Number[]) {
+    constructor(name: string, surname: string, address: Address, phoneNumber: string, email: string, password: string, profession: string, professionInfo: string, role: Role, authorities: Number[], penalties: Number) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -24,5 +25,6 @@ export class Customer {
         this.professionInfo = professionInfo;
         this.role = role;
         this.authorities = authorities;
+        this.penalties = penalties;
     }
 }

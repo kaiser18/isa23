@@ -14,13 +14,14 @@ public class CustomerDTO {
     private String password;
     private String profession;
     private String professionInfo;
+    private int penalties;
     private String role;
     private List<AuthorityDTO> authorities;
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(Long id, String name, String surname, AddressDTO address, String phoneNumber, String email, String password, String profession, String professionInfo, String role, List<AuthorityDTO> authorities) {
+    public CustomerDTO(Long id, String name, String surname, AddressDTO address, String phoneNumber, String email, String password, String profession, String professionInfo, int penalties, String role, List<AuthorityDTO> authorities) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -30,6 +31,7 @@ public class CustomerDTO {
         this.password = password;
         this.profession = profession;
         this.professionInfo = professionInfo;
+        this.penalties = penalties;
         this.role = role;
         this.authorities = authorities;
     }
@@ -104,6 +106,14 @@ public class CustomerDTO {
 
     public void setProfessionInfo(String professionInfo) {
         this.professionInfo = professionInfo;
+    }
+
+    public int getPenalties() {
+        return penalties;
+    }
+
+    public void setPenalties(int penalties) {
+        this.penalties = penalties;
     }
 
     public String getRole() {

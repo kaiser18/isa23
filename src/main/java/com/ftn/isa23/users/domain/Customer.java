@@ -13,16 +13,18 @@ public class Customer extends User {
     private Long id;
     private String profession;
     private String professionInfo;
+    private int penalties;
     private boolean enabled;
     private String verificationCode;
 
     public Customer() {
     }
 
-    public Customer(Long id, String profession, String professionInfo) {
+    public Customer(Long id, String profession, String professionInfo, int penalties) {
         this.id = id;
         this.profession = profession;
         this.professionInfo = professionInfo;
+        this.penalties = penalties;
     }
 
     public Customer(Long id, boolean enabled, String verificationCode) {
@@ -55,6 +57,14 @@ public class Customer extends User {
 
     public void setProfessionInfo(String professionInfo) {
         this.professionInfo = professionInfo;
+    }
+
+    public int getPenalties() {
+        return penalties;
+    }
+
+    public void setPenalties(int penalties) {
+        this.penalties = penalties;
     }
 
     public boolean getEnabled() {

@@ -6,6 +6,8 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Reservation } from '../model/reservation/reservation';
 import { ReservationStorage } from '../model/reservation/reservationStorage';
+import { Customer } from '../model/users/customer';
+import { Role } from '../model/users/role';
 
 @Component({
   selector: 'app-customer-reservations',
@@ -24,8 +26,10 @@ export class CustomerReservationsComponent implements OnInit{
     this.getReservationsForCustomer();
   }
 
+  
   public reservations: Reservation[] = new Array();
   public equipment: ReservationStorage[] = new Array();
+  public penalties: Number;
 
   getReservationsForCustomer() {
     this.reservationService.getCreatedForCustomer(Number(localStorage.getItem("userId"))).subscribe(
@@ -34,9 +38,13 @@ export class CustomerReservationsComponent implements OnInit{
         for (let r of this.reservations) {
           this.getEquipmentByReservation(r.id);
         }
+
+        this.penalties = this.reservations[0].customer.penalties;
       }
     )
   }
+
+
 
   getEquipmentByReservation(r) {
     this.reservationStorageService.getEquipmentByReservation(r).subscribe(
@@ -67,8 +75,13 @@ export class CustomerReservationsComponent implements OnInit{
     })
   } 
 
-  cancelReservation(r) {
-    //TODO
+  cancelReservation(reservation: Reservation) {
+    this.reservationService.cancel(reservation.id).subscribe(
+      res => {
+        alert("You have successfully cancelled the reservation");
+        location.reload();
+      }
+    )
   }
 
   logout(){
@@ -78,6 +91,10 @@ export class CustomerReservationsComponent implements OnInit{
 
   checkLoggedInUser() {
     return this.authService.getUserValue();
+  }
+
+  isCustomer() {
+    return this.authService.getUserValue() && this.authService.getUserValue().role === Role.Customer
   }
 }
 

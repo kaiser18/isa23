@@ -8,7 +8,7 @@ public class CustomerMapper {
     private CustomerMapper() {}
 
     public static CustomerDTO mapCustomerToDTO(Customer customer) {
-        return new CustomerDTO(customer.getId(), customer.getName(), customer.getSurname(), AddressMapper.mapAddressToDTO(customer.getAddress()), customer.getPhoneNumber(), customer.getEmail(), customer.getPassword(), customer.getProfession(), customer.getProfessionInfo(), customer.getRole(), AuthorityMapper.mapAuthoritiesToListDTOs(customer.getAuthorities()));
+        return new CustomerDTO(customer.getId(), customer.getName(), customer.getSurname(), AddressMapper.mapAddressToDTO(customer.getAddress()), customer.getPhoneNumber(), customer.getEmail(), customer.getPassword(), customer.getProfession(), customer.getProfessionInfo(), customer.getPenalties(), customer.getRole(), AuthorityMapper.mapAuthoritiesToListDTOs(customer.getAuthorities()));
     }
 
     public static Customer mapDTOToCustomer(CustomerDTO dto) {
@@ -23,6 +23,7 @@ public class CustomerMapper {
         customer.setPassword(dto.getPassword());
         customer.setProfession(dto.getProfession());
         customer.setProfessionInfo(dto.getProfessionInfo());
+        customer.setPenalties(dto.getPenalties());
         customer.setAuthorities(AuthorityMapper.mapDTOsToListAuthorities(dto.getAuthorities()));
 
         return customer;

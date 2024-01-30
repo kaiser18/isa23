@@ -15,7 +15,7 @@ insert into companies(id, average_grade, description, name, address_id) values (
 insert into companies(id, average_grade, description, name, address_id) values (200, 4.6, 'Second company', 'MedCompany', 600);
 insert into companies(id, average_grade, description, name, address_id) values (300, 3.5, 'Third company', 'EquipMed', 700);
 
-insert into customers(enabled, profession, profession_info, verification_code, id) values (true, 'Profesija', 'Informacija', null, 100);
+insert into customers(enabled, profession, profession_info, verification_code, id, penalties) values (true, 'Profesija', 'Informacija', null, 100, 0);
 
 insert into companyadmins(id, company_id) values (200, 100);
 insert into companyadmins(id, company_id) values (300, 200);
@@ -72,6 +72,6 @@ insert into reservation(id, status, appointment_id, company_id, customer_id) val
 insert into reservation(id, status, appointment_id, company_id, customer_id) values (300, 1, 900, 300, 100);
 
 insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (100, 10, 100, 100);
-insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (200, 15, 100, 100);
+insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (200, 15, 200, 100);
 insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (300, 10, 100, 200);
 insert into reservation_storage(id, quantity, equipment_id, reservation_id) values (400, 20, 100, 300);

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CompanyService } from '../service/company/company.service';
 import { Company } from '../model/company/company';
 import { MatSort, Sort } from '@angular/material/sort';
+import { Role } from '../model/users/role';
 
 @Component({
   selector: 'app-unauthenticatd-user-companies',
@@ -34,6 +35,10 @@ export class UnauthenticatdUserCompaniesComponent implements AfterViewInit {
   logout(){
     this.auth.logout();
     this.router.navigate(['/login']);
+  }
+
+  isCustomer() {
+    return this.auth.getUserValue() && this.auth.getUserValue().role === Role.Customer
   }
 
   getGradeValues(event) {

@@ -1,5 +1,9 @@
 <mat-drawer-container class="example-container" autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 0px; background: transparent;" hasBackdrop="true" >
     <mat-drawer style="width: 15%; height: 100%; background-color: #385399;" #drawer mode ="side">
+        <mat-action-list style="position: relative; bottom: 1px;">
+            <button mat-list-item routerLink="/" style="color: white;">Companies</button>
+            <button *ngIf="isCustomer()"mat-list-item routerLink="/customer/reservations" style="color: white;">Reservations</button>
+        </mat-action-list>
     </mat-drawer>
     
     <mat-drawer-content>

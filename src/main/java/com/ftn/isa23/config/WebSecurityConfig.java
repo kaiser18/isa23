@@ -109,6 +109,7 @@ public class WebSecurityConfig {
                 .antMatchers("/reservationStorage/getEquipmentByReservation").permitAll()
 
                 .antMatchers("/reservation/getCreatedForCustomer").permitAll()
+                .antMatchers("/reservation/cancel").permitAll()
 
                 // za svaki drugi zahtev korisnik mora biti autentifikovan
                 .anyRequest().authenticated().and()

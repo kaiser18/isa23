@@ -14,4 +14,8 @@ export class ReservationService {
   getCreatedForCustomer(customerId: Number) : Observable<Reservation[]> {
     return this.http.get<Reservation[]>(`${environment.baseUrl}/${environment.reservation}/${environment.getCreatedForCustomer}?customerId=${customerId}`);
   }
+
+  cancel(reservationId: Number) {
+    return this.http.post(`${environment.baseUrl}/${environment.reservation}/${environment.cancel}`, reservationId, {responseType : 'text'});
+  }
 }

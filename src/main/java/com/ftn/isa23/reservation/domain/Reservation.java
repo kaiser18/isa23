@@ -76,4 +76,11 @@ public class Reservation {
     public void setStatus(ReservationStatus status) {
         this.status = status;
     }
+
+    public boolean getDoublePenalty(int hours) {
+        Date today = new Date();
+        Date validDate = new Date(today.getTime() + hours);
+
+        return getAppointment().getTimePeriod().getStartTime().after(validDate);
+    }
 }

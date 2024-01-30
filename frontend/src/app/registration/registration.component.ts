@@ -79,7 +79,7 @@ export class RegistrationComponent implements OnInit {
 
     var authorities : Number[] = new Array();
 
-    this.customer = new Customer(this.name, this.surname, this.address, this.phoneNumber, this.email, this.password, this.profession, this.professionInfo, role, authorities);
+    this.customer = new Customer(this.name, this.surname, this.address, this.phoneNumber, this.email, this.password, this.profession, this.professionInfo, role, authorities, 0);
 
     if (this.passwordCheck()) {
       this.service.registerCustomer(this.customer).subscribe(
