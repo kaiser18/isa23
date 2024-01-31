@@ -55,17 +55,19 @@ insert into storage(id, quantity, company_id, equipment_id) values (1300, 0 , 30
 insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (100, 0, '2024-02-03 09:30:00', '2024-02-03 09:00:00', 100, 200);
 insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (200, 0, '2024-02-03 10:00:00', '2024-02-03 09:30:00', 100, 200);
 insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (300, 0, '2024-02-03 10:30:00', '2024-02-03 10:00:00', 100, 200);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (400, 1, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 100, 200);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (400, 0, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 100, 200);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (500, 0, '2024-02-05 09:00:00', '2024-02-05 08:30:00', 100, 200);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (600, 0, '2024-02-05 10:00:00', '2024-02-05 09:30:00', 100, 200);
 
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (500, 0, '2024-02-03 09:30:00', '2024-02-03 09:00:00', 200, 300);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (600, 1, '2024-02-03 10:00:00', '2024-02-03 09:30:00', 200, 300);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (700, 0, '2024-02-03 10:30:00', '2024-02-03 10:00:00', 200, 300);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (800, 0, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 200, 300);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (700, 0, '2024-02-03 09:30:00', '2024-02-03 09:00:00', 200, 300);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (800, 0, '2024-02-03 10:00:00', '2024-02-03 09:30:00', 200, 300);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (900, 0, '2024-02-03 10:30:00', '2024-02-03 10:00:00', 200, 300);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1000, 0, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 200, 300);
 
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (900, 1, '2024-02-03 09:30:00', '2024-02-03 09:00:00', 300, 400);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1000, 0, '2024-02-03 10:00:00', '2024-02-03 09:30:00', 300, 400);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1100, 0, '2024-02-03 10:30:00', '2024-02-03 10:00:00', 300, 400);
-insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1200, 0, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 300, 400);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1100, 0, '2024-02-03 09:30:00', '2024-02-03 09:00:00', 300, 400);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1200, 0, '2024-02-03 10:00:00', '2024-02-03 09:30:00', 300, 400);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1300, 0, '2024-02-03 10:30:00', '2024-02-03 10:00:00', 300, 400);
+insert into appointment(id, status, appointment_end_time, appointment_start_time, company_id, company_admin_id) values (1400, 0, '2024-02-03 11:00:00', '2024-02-03 10:30:00', 300, 400);
 
 insert into reservation(id, status, appointment_id, company_id, customer_id) values (100, 0, 400, 100, 100);
 insert into reservation(id, status, appointment_id, company_id, customer_id) values (200, 0, 600, 200, 100);

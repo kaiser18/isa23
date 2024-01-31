@@ -6,7 +6,9 @@ import com.ftn.isa23.users.service.IEmailService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +70,23 @@ public class EmailService { //implements IEmailService {
         message.setSubject(dto.getSubject());
 
         javaMailSender.send(message);
+    }
+
+    @Async
+    public void sendQRCode(Customer customer, String message, String pathToAttachment) throws FileNotFoundException, MessagingException, IOException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+        helper.setFrom("medequipmentisa23@gmail.com");
+        helper.setTo(customer.getEmail());
+        helper.setSubject("Reservation");
+        helper.setText(message);
+
+        FileSystemResource file
+                = new FileSystemResource(new File(pathToAttachment));
+        helper.addAttachment("QR.png", file);
+
+        javaMailSender.send(mimeMessage);
     }
 }

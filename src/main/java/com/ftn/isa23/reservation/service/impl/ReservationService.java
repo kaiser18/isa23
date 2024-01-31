@@ -8,6 +8,7 @@ import com.ftn.isa23.company.repository.AppointmentRepository;
 import com.ftn.isa23.company.repository.CompanyRepository;
 import com.ftn.isa23.company.repository.EquipmentRepository;
 import com.ftn.isa23.company.repository.StorageRepository;
+import com.ftn.isa23.reservation.QRCode;
 import com.ftn.isa23.reservation.domain.Reservation;
 import com.ftn.isa23.reservation.domain.ReservationStorage;
 import com.ftn.isa23.reservation.domain.enums.ReservationStatus;
@@ -18,9 +19,14 @@ import com.ftn.isa23.reservation.repository.ReservationStorageRepository;
 import com.ftn.isa23.reservation.service.IReservationService;
 import com.ftn.isa23.users.domain.Customer;
 import com.ftn.isa23.users.repository.CustomerRepository;
+import com.ftn.isa23.users.service.impl.EmailService;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.WriterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +39,10 @@ public class ReservationService implements IReservationService {
     private final StorageRepository storageRepository;
     private final CompanyRepository companyRepository;
     private final EquipmentRepository equipmentRepository;
+    private final EmailService emailService;
 
     @Autowired
-    public ReservationService(ReservationRepository repository, ReservationStorageRepository reservationStorageRepository, CustomerRepository customerRepository, AppointmentRepository appointmentRepository, StorageRepository storageRepository, CompanyRepository companyRepository, EquipmentRepository equipmentRepository) {
+    public ReservationService(ReservationRepository repository, ReservationStorageRepository reservationStorageRepository, CustomerRepository customerRepository, AppointmentRepository appointmentRepository, StorageRepository storageRepository, CompanyRepository companyRepository, EquipmentRepository equipmentRepository, EmailService emailService) {
         this.repository = repository;
         this.reservationStorageRepository = reservationStorageRepository;
         this.customerRepository = customerRepository;
@@ -43,6 +50,7 @@ public class ReservationService implements IReservationService {
         this.storageRepository = storageRepository;
         this.companyRepository = companyRepository;
         this.equipmentRepository = equipmentRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -105,7 +113,13 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public Reservation create(CreateReservationDTO dto) {
+    public Reservation create(CreateReservationDTO dto) throws Exception {
+        Customer customer = customerRepository.findById(dto.getCustomerId()).get();
+
+        if (customer.getPenalties() > 2) {
+            throw new Exception("Customer has 3 or more penalties");
+        }
+
         Reservation reservation = new Reservation();
 
         Appointment appointment = appointmentRepository.findById(dto.getAppointmentId()).get();
@@ -113,7 +127,6 @@ public class ReservationService implements IReservationService {
         appointmentRepository.save(appointment);
         reservation.setAppointment(appointment);
 
-        Customer customer = customerRepository.findById(dto.getCustomerId()).get();
         reservation.setCustomer(customer);
 
         Company company = companyRepository.findById(dto.getCompanyId()).get();
@@ -143,6 +156,17 @@ public class ReservationService implements IReservationService {
                 }
             }
         }
+
+        String message = "You have made a reservation" + "\r\n"
+                + "Company: " + company.getName() + "\r\n"
+                + "Company Admin: " + appointment.getCompanyAdmin().getName() + " " + appointment.getCompanyAdmin().getSurname() + "\r\n"
+                + "Reservation ID: " + reservation.getId() + "\r\n"
+                + "Time: " + appointment.getTimePeriod().getStartTime();
+
+        QRCode generateQrCode = new QRCode();
+        generateQrCode.generateQrCodeReservation(message, reservation.getId().toString());
+
+        this.emailService.sendQRCode(reservation.getCustomer(), message, "D:/Faks/isa qr/"+reservation.getId().toString()+".png");
 
         return reservation;
     }
