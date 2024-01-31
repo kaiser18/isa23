@@ -5,6 +5,9 @@ public class ReservationStorageDTO {
     private String equipmentName;
     private int quantity;
 
+    public ReservationStorageDTO() {
+    }
+
     public ReservationStorageDTO(Long equipmentId, String equipmentName, int quantity) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;

@@ -2,16 +2,16 @@ package com.ftn.isa23.reservation.dto;
 
 import java.util.List;
 
-public class CreateOrderDTO {
+public class CreateReservationDTO {
     private Long appointmentId;
     private Long customerId;
     private Long companyId;
     private List<ReservationStorageDTO> reservationStorages;
 
-    public CreateOrderDTO() {
+    public CreateReservationDTO() {
     }
 
-    public CreateOrderDTO(Long appointmentId, Long customerId, Long companyId, List<ReservationStorageDTO> reservationStorages) {
+    public CreateReservationDTO(Long appointmentId, Long customerId, Long companyId, List<ReservationStorageDTO> reservationStorages) {
         this.appointmentId = appointmentId;
         this.customerId = customerId;
         this.companyId = companyId;

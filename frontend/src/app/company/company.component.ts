@@ -126,9 +126,16 @@ export class CompanyComponent implements OnInit {
 
     let createRes = new CreateReservation(this.reservationForm.value.selectedAppointment.id, this.currentUserId, this.companyId, this.reservedEquipment);
 
+    console.log(createRes);
+
     this.reservationService.createReservation(createRes).subscribe(
       result => {
-        
+        alert("You have successfully made a reservation");
+        console.log(result);
+        this.router.navigate(['/customer/reservations']);
+      },
+      err => {
+        alert("There was an error while making a reservation");
       }
     )
   }
