@@ -2,7 +2,7 @@ ISA projekat 2023
 
 ## How to Run
 
-# Frontend:
+### Frontend:
 
   ```
 # From frontend/ run:
@@ -10,6 +10,6 @@ ISA projekat 2023
     ng serve --o
 ```
 
-# Backend
+### Backend
 
 After cloning the project, set your username and password for Postgres in application.properties and create a isa database. Run Spring application.
