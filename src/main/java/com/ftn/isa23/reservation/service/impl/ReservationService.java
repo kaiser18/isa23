@@ -149,6 +149,9 @@ public class ReservationService implements IReservationService {
 
         for (Storage s : companyStorages) {
             for (ReservationStorageDTO rs : dto.getReservationStorages()) {
+                if (s.getQuantity() < rs.getQuantity()) {
+                    throw new Exception("You cannot order more than it's available");
+                }
                 if (s.getEquipment().getId() == rs.getEquipmentId()) {
                     s.setQuantity(s.getQuantity() - rs.getQuantity());
 

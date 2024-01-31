@@ -38,14 +38,10 @@
                       
                     </div>
                     <div style="display:grid;margin-left:200px;margin-top:20px;">
-                      <div><label>Name:</label></div>
-                      <div><p>{{company.name}}</p></div>
-                      <div><label>Address:</label></div>
-                      <div style="height: fit-content;display:flex;"><p>{{company.address.street}} {{company.address.number}}, {{company.address.city.name}}, {{company.address.country.name}}</p></div>
-                      <div><label>About:</label></div>
-                      <div style="width: 500px;height: fit-content;"><p>{{company.description}}</p></div>
-                      <div><label>Grade:</label></div>
-                      <div><p>{{company.averageGrade}}</p></div>
+                      <div style="height: fit-content;display:flex;"><label>Name: </label><p>{{company.name}}</p></div>
+                      <div style="height: fit-content;display:flex;"><label>Address: </label><p>{{company.address.street}} {{company.address.number}}, {{company.address.city.name}}, {{company.address.country.name}}</p></div>
+                      <div style="height: fit-content;display:flex;"><label>About:</label><p>{{company.description}}</p></div>
+                      <div><label>Grade:</label><p>{{company.averageGrade}}</p></div>
                       <div><label>Equipment:</label></div>
                         <div *ngIf="equipment.length==0"><p style="font-size: 15px;">No equipment in the company at the moment.</p></div>
                         <table class="fl-table" *ngIf="equipment.length!=0">
