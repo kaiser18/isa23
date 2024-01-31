@@ -120,31 +120,7 @@ public class ReservationService implements IReservationService {
             throw new Exception("Customer has 3 or more penalties");
         }
 
-        Reservation reservation = new Reservation();
-
-        Appointment appointment = appointmentRepository.findById(dto.getAppointmentId()).get();
-        appointment.setStatus(AppointmentStatus.RESERVED);
-        appointmentRepository.save(appointment);
-        reservation.setAppointment(appointment);
-
-        reservation.setCustomer(customer);
-
         Company company = companyRepository.findById(dto.getCompanyId()).get();
-        reservation.setCompany(company);
-
-        reservation.setStatus(ReservationStatus.CREATED);
-
-        repository.save(reservation);
-
-        for (ReservationStorageDTO rs : dto.getReservationStorages()) {
-                ReservationStorage rStorage = new ReservationStorage();
-                rStorage.setReservation(reservation);
-                rStorage.setEquipment(equipmentRepository.findById(rs.getEquipmentId()).get());
-                rStorage.setQuantity(rs.getQuantity());
-
-                reservationStorageRepository.save(rStorage);
-        }
-
         List<Storage> companyStorages = storageRepository.getAllStoragesByCompany(company.getId());
 
         for (Storage s : companyStorages) {
@@ -158,6 +134,30 @@ public class ReservationService implements IReservationService {
                     storageRepository.save(s);
                 }
             }
+        }
+
+        Reservation reservation = new Reservation();
+
+        Appointment appointment = appointmentRepository.findById(dto.getAppointmentId()).get();
+        appointment.setStatus(AppointmentStatus.RESERVED);
+        appointmentRepository.save(appointment);
+        reservation.setAppointment(appointment);
+
+        reservation.setCustomer(customer);
+
+        reservation.setCompany(company);
+
+        reservation.setStatus(ReservationStatus.CREATED);
+
+        repository.save(reservation);
+
+        for (ReservationStorageDTO rs : dto.getReservationStorages()) {
+            ReservationStorage rStorage = new ReservationStorage();
+            rStorage.setReservation(reservation);
+            rStorage.setEquipment(equipmentRepository.findById(rs.getEquipmentId()).get());
+            rStorage.setQuantity(rs.getQuantity());
+
+            reservationStorageRepository.save(rStorage);
         }
 
         String message = "You have made a reservation" + "\r\n"
