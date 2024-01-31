@@ -11,7 +11,7 @@ public class ReservationStorageMapper {
     }
 
     public static ReservationStorageDTO mapReservationStorageToDTO(ReservationStorage reservationStorage) {
-        return new ReservationStorageDTO(reservationStorage.getEquipment().getName(), reservationStorage.getQuantity(), reservationStorage.getReservation().getId());
+        return new ReservationStorageDTO(reservationStorage.getEquipment().getId(), reservationStorage.getEquipment().getName(), reservationStorage.getQuantity());
     }
 
     public static List<ReservationStorageDTO> mapReservationStoragesToListDTOs (List<ReservationStorage> reservationStorages) {

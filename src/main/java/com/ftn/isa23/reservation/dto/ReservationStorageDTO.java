@@ -1,14 +1,22 @@
 package com.ftn.isa23.reservation.dto;
 
 public class ReservationStorageDTO {
+    private Long equipmentId;
     private String equipmentName;
     private int quantity;
-    private Long reservationId;
 
-    public ReservationStorageDTO(String equipmentName, int quantity, Long reservationId) {
+    public ReservationStorageDTO(Long equipmentId, String equipmentName, int quantity) {
+        this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         this.quantity = quantity;
-        this.reservationId = reservationId;
+    }
+
+    public Long getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(Long equipmentId) {
+        this.equipmentId = equipmentId;
     }
 
     public String getEquipmentName() {
@@ -25,13 +33,5 @@ public class ReservationStorageDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Long getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(Long reservationId) {
-        this.reservationId = reservationId;
     }
 }

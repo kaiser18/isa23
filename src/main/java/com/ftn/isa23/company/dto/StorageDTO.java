@@ -6,13 +6,11 @@ public class StorageDTO {
     private Long equipmentId;
     private String equipmentName;
     private int quantity;
-    private Long companyId;
 
-    public StorageDTO(Long equipmentId, String equipmentName, int quantity, Long companyId) {
+    public StorageDTO(Long equipmentId, String equipmentName, int quantity) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         this.quantity = quantity;
-        this.companyId = companyId;
     }
 
     public Long getEquipmentId() {
@@ -37,13 +35,5 @@ public class StorageDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
     }
 }

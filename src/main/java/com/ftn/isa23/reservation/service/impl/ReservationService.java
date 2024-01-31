@@ -51,6 +51,24 @@ public class ReservationService implements IReservationService {
         if (!reservation.getDoublePenalty(cancellationPeriod)) {
             customer.setPenalties(customer.getPenalties() + 2);
             customerRepository.save(customer);
+
+            appointment.setStatus(AppointmentStatus.CREATED);
+            appointmentRepository.save(appointment);
+
+            for (Storage s: storages) {
+                for (ReservationStorage rs : reservationStorages ) {
+                    if (s.getEquipment().getId() == rs.getEquipment().getId()) {
+                        s.setQuantity(s.getQuantity() + rs.getQuantity());
+                        storageRepository.save(s);
+                        reservationStorageRepository.delete(rs);
+                    }
+                }
+            }
+
+            reservation.setAppointment(null);
+            repository.delete(reservation);
+
+            return true;
         }
 
         customer.setPenalties(customer.getPenalties() + 1);

@@ -17,5 +17,5 @@ export const environment = {
     getEquipmentByReservation: 'getEquipmentByReservation',
     getCreatedForCustomer: 'getCreatedForCustomer',
     cancel: 'cancel',
-    
+    createRes: 'create'
 }

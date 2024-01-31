@@ -10,7 +10,7 @@ public class StorageMapper {
     private StorageMapper() {}
 
     public static StorageDTO mapStorageToDTO(Storage storage) {
-        return new StorageDTO(storage.getEquipment().getId(), storage.getEquipment().getName(), storage.getQuantity(), storage.getCompany().getId());
+        return new StorageDTO(storage.getEquipment().getId(), storage.getEquipment().getName(), storage.getQuantity());
     }
 
     public static List<StorageDTO> mapStoragesToListDTOs(List<Storage> storages) {

@@ -52,9 +52,6 @@
                               <tbody>
                               <tr *ngFor="let e of equipment">
                                   <td>{{e.equipmentName}}</td>
-                                  <td *ngIf="isCustomer()"><input id="quantityToOrder" type="number"/></td>
-                                  <td *ngIf="isCustomer()"><button mat-button style="background-color: #385399; color: white;"
-                                   (click)="addToOrder(e, quantityToOrder)" >Add to order</button></td>
                               </tr>
                     
                               <tbody>
@@ -70,10 +67,8 @@
                             <tbody>
                             <tr *ngFor="let availableAppointment of availableAppointments">
                                 <td>{{availableAppointment.timePeriod.startTime | date:"dd.MM.yyyy. HH:mm"}}</td>
-                                <td>{{availableAppointment.timePeriod.endTime | date:"dd.MM.yyyy. HH:mm"}}</td>
+                                <td>{{availableAppointment.timePeriod.endTime | date:"HH:mm"}}</td>
                                 <td>{{availableAppointment.companyAdmin.name}} {{availableAppointment.companyAdmin.surname}}</td>
-                                <td *ngIf="isCustomer()"><button mat-button style="background-color: #385399; color: white;"
-                                  (click)="chooseAppointment(availableAppointment)">Select</button></td>
                             </tr>
                   
                             <tbody>
@@ -89,6 +84,82 @@
                 <mat-card *ngIf="makeReservation" style="height:fit-content;">
                     <div style="margin-left:200px;">
                       <label style="align-content:center;">Reservation</label>
+                    </div>
+
+                    <div style="display: flex;">
+                      <mat-card>
+                          <form [formGroup]="addEquipmentForm" (ngSubmit)="addToReservation()">
+                              <mat-grid-list cols="3"  rowHeight="3:1">
+                    
+                                <mat-grid-tile style="margin:10px;">
+                                  <div class="inputField" style="width: 250px;">
+                                    <mat-form-field appearance="fill" >
+                                      <mat-label>Choose equipment*</mat-label>
+                                      <mat-select formControlName = 'equipmentToOrder' >
+                                        <mat-option>--</mat-option>
+                                        <mat-option *ngFor="let e of equipmentR" [value]="e">
+                                          {{e.equipmentName}}
+                                        </mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                </mat-grid-tile>
+                    
+                                <mat-grid-tile style="margin:10px;">
+                                  <div class="inputField" style="width: 250px;margin-left: 20px;">
+                                    <mat-form-field appearance="fill" id="amount-ff" >
+                                      <mat-label >Quantity</mat-label>
+                                      <input matInput id="quantity" placeholder="Quantity" name="amount-ff"
+                                             formControlName="quantityToOrder" required type="number" min="1" style="height: 25px;">
+                                    </mat-form-field>
+                                  </div>
+                                </mat-grid-tile>
+                    
+                                <mat-grid-tile><button style="float:right; position:relative; margin: 10px;margin-bottom:10px;width: auto;background-color: #385399;" color="accent" mat-raised-button id='addEquipment' [disabled]="!addEquipmentForm.valid">Add</button></mat-grid-tile>
+                    
+                              </mat-grid-list>
+                          </form>
+                          </mat-card>
+                        <mat-card>
+                          <form [formGroup]="reservationForm"  (ngSubmit)="submitReservation()">
+                          <mat-grid-list  cols="3" rowHeight="3:1" *ngIf="reservedEquipment.length!=0">
+                            
+                            <mat-grid-tile> <p style="font-weight: bold;size:50px;color: #385399;" >Equipment list</p></mat-grid-tile>
+                            <mat-grid-tile></mat-grid-tile>
+                            <mat-grid-tile></mat-grid-tile>
+                            <mat-grid-tile></mat-grid-tile>
+                            
+                            <mat-grid-tile>
+                              <div class="inputField">
+                                <mat-form-field color="accent" appearance="fill">
+                                  <mat-label>Choose appointment</mat-label>
+                                      <mat-select formControlName = 'selectedAppointment' >
+                                        <mat-option>--</mat-option>
+                                        <mat-option *ngFor="let a of appointments" [value]="a">
+                                          {{a.timePeriod.startTime | date:"dd.MM.yyyy. HH:mm"}} - {{a.timePeriod.endTime | date: "HH:mm"}}
+                                        </mat-option>
+                                      </mat-select>
+                                </mat-form-field>
+                    
+                              </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile></mat-grid-tile>
+                            <mat-grid-tile style="size: 30px;font-weight: bold;color: #385399;" >Equipment name</mat-grid-tile>
+                            <mat-grid-tile style="size: 30px;font-weight: bold;color: #385399;" >Amount</mat-grid-tile>
+                            <mat-grid-tile></mat-grid-tile>
+                            <div>
+                                <p class="text-grid" *ngFor="let re of reservedEquipment">
+                                  <mat-grid-tile style="size: 20px;">{{re.equipmentName}}</mat-grid-tile>
+                                  <mat-grid-tile style="size: 20px;">{{re.quantity}}</mat-grid-tile>
+                                  <mat-grid-tile><button class="btn" (click)="cancelItem(re.equipmentId)" ><i class="fa fa-close"></i> Remove</button></mat-grid-tile>
+                                </p>
+                              <mat-grid-tile></mat-grid-tile>
+                              <mat-grid-tile></mat-grid-tile>
+                              <mat-grid-tile><button style="float:right; position:relative; margin: 10px;margin-top:25px;size:20px;background-color: #385399;" color="accent" mat-raised-button id='submitReservation'  [disabled]="!reservationForm.valid">Reserve</button></mat-grid-tile>
+                            </div>
+                          </mat-grid-list>
+                          </form>
+                        </mat-card>
                     </div>
                     <div style="vertical-align: bottom;">
                       <button style="float:right;position: relative; background-color: #385399; margin-right:20px;margin-top: 60px;" color="accent" mat-raised-button id='cancelReservation' (click)='cancelReservation()'>Back</button>

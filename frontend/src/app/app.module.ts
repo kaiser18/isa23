@@ -25,6 +25,7 @@ import { CompanyComponent } from './company/company.component';
 import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CustomerReservationsComponent } from './customer-reservations/customer-reservations.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { CustomerReservationsComponent } from './customer-reservations/customer-
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatStepperModule
+    MatStepperModule,
+    MatGridListModule
     
   ],
   providers: [

@@ -7,6 +7,11 @@ import { StorageService } from '../service/company/storage.service';
 import { Role } from '../model/users/role';
 import { Appointment } from '../model/company/appointment';
 import { AppointmentService } from '../service/company/appointment.service';
+import { Storage } from '../model/company/storage';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReservationStorage } from '../model/reservation/reservationStorage';
+import { CreateReservation } from '../model/reservation/createReservation';
+import { ReservationService } from '../service/reservation/reservation.service';
 
 @Component({
   selector: 'app-company',
@@ -20,9 +25,21 @@ export class CompanyComponent implements OnInit {
   public profile: boolean = true;
   public makeReservation: boolean = false;
 
+  public addEquipmentForm: FormGroup;
+  public equipmentR: Storage[] = new Array();
+  public equipmentToOrder: Storage;
   public quantityToOrder: Number;
 
-  constructor(private service: CompanyService, private router: Router, private authService: AuthenticationService, private storageService: StorageService, private appointmentService: AppointmentService) {
+  public reservedEquipment: ReservationStorage[] = new Array();
+  public selectedAppointment: Appointment;
+
+  public reservationForm: FormGroup;
+  public appointments: Appointment[] = new Array();
+
+  public currentUserId: Number;
+  public companyId: Number;
+
+  constructor(private service: CompanyService, private router: Router, private authService: AuthenticationService, private storageService: StorageService, private appointmentService: AppointmentService, private reservationService: ReservationService) {
 
   }
 
@@ -34,6 +51,15 @@ export class CompanyComponent implements OnInit {
     this.loadCompany();
     this.loadStorage();
     this.loadAvailableAppointments();
+
+    this.addEquipmentForm = new FormGroup({
+      'equipmentToOrder': new FormControl(null, Validators.required),
+      'quantityToOrder': new FormControl(null, Validators.required)
+    });
+
+    this.reservationForm = new FormGroup({
+      'selectedAppointment': new FormControl(null, Validators.required)
+    });
   }
 
   loadCompany() {
@@ -48,6 +74,7 @@ export class CompanyComponent implements OnInit {
     this.storageService.getAvailableByCompany(Number(localStorage.getItem('companyId'))).subscribe(
       data => {
         this.equipment = data;
+        this.equipmentR = data;
         }
     )
   }
@@ -56,6 +83,7 @@ export class CompanyComponent implements OnInit {
     this.appointmentService.getAvailableForCompany(Number(localStorage.getItem('companyId'))).subscribe(
       data => {
         this.availableAppointments = data;
+        this.appointments = data;
       }
     )
   }
@@ -70,12 +98,39 @@ export class CompanyComponent implements OnInit {
     this.makeReservation = false;
   }
 
-  addToOrder(e, q) {
-    //TODO
+  addToReservation() {
+    let itemExists = this.reservedEquipment.filter(equip => equip.equipmentId == this.addEquipmentForm.value.equipmentToOrder.equipmentId).length == 0;
+    if (itemExists) {
+      let equip = this.equipmentR.filter(e => e.equipmentId == this.addEquipmentForm.value.equipmentToOrder.equipmentId);
+      let newRStorage = new ReservationStorage(equip[0].equipmentId, equip[0].equipmentName, this.addEquipmentForm.value.quantityToOrder);
+
+      this.reservedEquipment.push(newRStorage);
+    }
+    else {
+      for (var i in this.reservedEquipment) {
+        if (this.reservedEquipment[i].equipmentId == this.addEquipmentForm.value.equipmentToOrder.equipmentId) {
+          this.reservedEquipment[i].quantity += this.addEquipmentForm.value.quantityToOrder;
+          break;
+        }
+      }
+    }
+   }
+
+  cancelItem(itemId: Number) {
+    this.reservedEquipment = this.reservedEquipment.filter(i => i.equipmentId !== itemId);
   }
 
-  chooseAppointment(a) {
-    //TODO
+  submitReservation() {
+    this.currentUserId = Number(localStorage.getItem('userId'));
+    this.companyId = Number(localStorage.getItem('companyId'));
+
+    let createRes = new CreateReservation(this.reservationForm.value.selectedAppointment.id, this.currentUserId, this.companyId, this.reservedEquipment);
+
+    this.reservationService.createReservation(createRes).subscribe(
+      result => {
+        
+      }
+    )
   }
  
   isCustomer() {
